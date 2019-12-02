@@ -32,17 +32,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823">
+      <HintPath>..\packages\CsvHelper.12.2.1\lib\net47\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AU_TaxBands.cs" />
     <Compile Include="Calculator.cs" />
     <Compile Include="ConsoleInterface.cs" />
+    <Compile Include="Payslip.cs" />
+    <Compile Include="PayslipWriter.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgramInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxBand.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
