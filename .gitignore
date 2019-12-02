@@ -1,0 +1,15 @@
+bin/
+obj/
+/packages/
+.idea/.idea.Payslip_End/.idea/contentModel.xml
+.idea/.idea.Payslip_End/.idea/encodings.xml
+.idea/.idea.Payslip_End/.idea/indexLayout.xml
+.idea/.idea.Payslip_End/.idea/modules.xml
+.idea/.idea.Payslip_End/.idea/projectSettingsUpdater.xml
+.idea/.idea.Payslip_End/.idea/vcs.xml
+.idea/.idea.Payslip_End/riderModule.iml
+Payslip_End.sln
+Payslip_End.sln
+Payslip_End/Payslip_End.csproj
+Payslip_End/Properties/AssemblyInfo.cs
+Payslip_Tests/packages.config
