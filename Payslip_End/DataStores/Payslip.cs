@@ -1,7 +1,6 @@
-using System;
 using System.Text;
 
-namespace Payslip_End {
+namespace Payslip_End.DataStores {
     public class Payslip {
         public Payslip(string name, string payPeriod, decimal grossIncomePerMonth, decimal incomeTax, decimal netIncome, decimal superKiwiSaverContribution) {
             Name = name;
@@ -20,8 +19,8 @@ namespace Payslip_End {
         public string PayPeriod { get; set; }
 
         public override string ToString() {
-            
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("Your payslip has been generated: \n");
             stringBuilder.AppendLine("Name: " + Name);
             stringBuilder.AppendLine("Pay Period: " + PayPeriod);
             stringBuilder.AppendLine("Gross Income: " + GrossIncomePerMonth);

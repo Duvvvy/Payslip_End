@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Calculator_Tests.cs" />
     <Compile Include="ConsoleInterfaceTests.cs" />
+    <Compile Include="PersonWriterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +61,9 @@
       <Project>{3c524210-7a52-40ef-939f-4c05855671c5}</Project>
       <Name>Payslip_End</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="test.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

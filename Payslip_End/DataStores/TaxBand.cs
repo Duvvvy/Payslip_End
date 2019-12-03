@@ -1,4 +1,4 @@
-namespace Payslip_End {
+namespace Payslip_End.DataStores {
     public class TaxBand {
         public TaxBand(decimal lowerBand, decimal upperBand, decimal taxRate, decimal flatFee) {
             this.UpperBand = upperBand;

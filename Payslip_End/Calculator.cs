@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NLog;
+using Payslip_End.DataStores;
 
 namespace Payslip_End {
+    /*
+     * 
+     */
     public class Calculator {
         public Calculator() {
 
@@ -24,17 +29,16 @@ namespace Payslip_End {
             return NumberMidpointRounder(unRoundedMonthlyGross);
         }
 
-        public decimal SuperKiwiSaverContribution(decimal annualGrossMonthlyIncome, decimal superOrKiwiRate) {
+        public decimal SuperKiwiSaverContribution(decimal grossMonthlyIncome, decimal superOrKiwiRate) {
             var superOrKiwiRateAsPercentage = superOrKiwiRate / 100;
-            var unRoundedMonthlyContribution = annualGrossMonthlyIncome * superOrKiwiRateAsPercentage;
+            var unRoundedMonthlyContribution = grossMonthlyIncome * superOrKiwiRateAsPercentage;
             return NumberMidpointRounder(unRoundedMonthlyContribution);
         }
 
-        public string PayPeriod(DateTime paymentStartDate, DateTime paymentEndDate) {
+        public string PayPeriod(DateTime paymentStartDate, DateTime paymentEndDate) {//TODO insert format
             return paymentStartDate.ToString("dd/MM/yyyy") + " - " + paymentEndDate.ToString("dd/MM/yyyy");
         }
         
-
         public decimal NumberMidpointRounder(decimal unRoundedNumber) {
             var round = Math.Round(unRoundedNumber, MidpointRounding.AwayFromZero);
             return round;

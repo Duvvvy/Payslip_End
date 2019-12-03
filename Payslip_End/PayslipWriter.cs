@@ -1,32 +1,47 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Payslip_End.Constants;
+using Payslip_End.DataStores;
 
 namespace Payslip_End {
     public class PayslipWriter {
         public Calculator Calculator { get; set; }
-        public AU_TaxBands AuTaxBands { get; set; }
+        public AuTaxBands AuTaxBands { get; set; }
         public PayslipWriter() {
             Calculator = new Calculator();
-            AuTaxBands = new AU_TaxBands();
+            AuTaxBands = new AuTaxBands();
         }
         public Payslip CreatePayslipForPerson(Person person) {
             var name = (person.FirstName + " " + person.LastName);
-            var payPeriod = Calculator.PayPeriod(person.PaymentStartDate,person.PaymentEndDate);
+
+            var payPeriod = "";
+            if (person.PayPeriod != null) {
+                payPeriod = person.PayPeriod;
+            }
+            else {
+                payPeriod = Calculator.PayPeriod(person.PaymentStartDate,person.PaymentEndDate);
+            }
             var grossIncomePerMonth = Calculator.MonthlyGrossIncomeFromAnnualGross(person.AnnualSalary);
             var incomeTax = Calculator.MonthlyIncomeTaxFromAnnualGross(AuTaxBands, person.AnnualSalary);
             var netIncome = Calculator.MonthlyNetIncome(grossIncomePerMonth, incomeTax);
-            var superOrKiwiContribution = Calculator.SuperKiwiSaverContribution(grossIncomePerMonth, person.SuperKiwiRate);
+
+            string superKiwiRateNumbersOnly = GetNumbers(person.SuperKiwiRate);
+            
+            var superOrKiwiContribution = Calculator.SuperKiwiSaverContribution(grossIncomePerMonth, Convert.ToDecimal(superKiwiRateNumbersOnly));
             
             var payslip = new Payslip(name,payPeriod,grossIncomePerMonth,incomeTax,netIncome,superOrKiwiContribution);
             
             return payslip;
         }
-
-        public List<Payslip> CreatePayslipsForGroupOfPeople(List<Person> group) {
+        
+        public List<Payslip> CreatePayslipsForGroupOfPeople(IEnumerable<Person> group) {
             return @group.Select(CreatePayslipForPerson).ToList();
         }
         
-        
+        private static string GetNumbers(string input)
+        {
+            return new string(input.Where(char.IsDigit).ToArray());
+        }
     }
 }
