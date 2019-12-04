@@ -13,3 +13,4 @@ Payslip_End.sln
 Payslip_End/Payslip_End.csproj
 Payslip_End/Properties/AssemblyInfo.cs
 Payslip_Tests/packages.config
+.DS_Store

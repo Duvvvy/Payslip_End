@@ -57,7 +57,6 @@
     <Compile Include="Constants\HumanText.cs" />
     <Compile Include="Constants\NZ_TaxBands.cs" />
     <Compile Include="CSVHandler.cs" />
-    <Compile Include="DataStores\DecimalConverter.cs" />
     <Compile Include="DataStores\Payslip.cs" />
     <Compile Include="DataStores\Person.cs" />
     <Compile Include="DataStores\PersonMap.cs" />

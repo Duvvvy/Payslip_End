@@ -9,14 +9,12 @@ namespace Payslip_End {
         /*
          * The intention of this class is take input and output from the user, through the console.
          */
-        
+
         public string ListDecisionGetter(List<string> arrayOfCorrectAnswers, string question) {
             while (true) {
                 Console.Out.WriteLine(question);
                 var userInput = GetInputFromUser();
-                if (arrayOfCorrectAnswers.Any(input => userInput == input)) {
-                    return userInput;
-                }
+                if (arrayOfCorrectAnswers.Any(input => userInput == input)) return userInput;
             }
         }
 
@@ -24,9 +22,7 @@ namespace Payslip_End {
             while (true) {
                 Console.Out.Write("\n" + question);
                 var userInput = GetInputFromUser();
-                if (regex.IsMatch(userInput)) {
-                    return userInput;
-                }
+                if (regex.IsMatch(userInput)) return userInput;
             }
         }
 
@@ -42,12 +38,12 @@ namespace Payslip_End {
                     DateTimeStyles.None,
                     out startDate);
             }
+
             return startDate;
         }
 
         protected virtual string GetInputFromUser() {
             return Console.ReadLine();
         }
-        
     }
 }

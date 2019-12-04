@@ -1,12 +1,9 @@
 using System;
-using System.Globalization;
-using System.Linq;
-using CsvHelper.Configuration.Attributes;
 
 namespace Payslip_End.DataStores {
     public class Person {
-        
-        public Person(string firstName, string lastName, decimal annualSalary, string superKiwiRate, DateTime paymentStartDate, DateTime paymentEndDate) {
+        public Person(string firstName, string lastName, decimal annualSalary, string superKiwiRate,
+            DateTime paymentStartDate, DateTime paymentEndDate) {
             FirstName = firstName;
             LastName = lastName;
             AnnualSalary = annualSalary;
@@ -16,7 +13,6 @@ namespace Payslip_End.DataStores {
         }
 
         public Person() {
-            
         }
 
         public string FirstName { get; set; }
@@ -26,6 +22,5 @@ namespace Payslip_End.DataStores {
         public DateTime PaymentStartDate { get; set; }
         public DateTime PaymentEndDate { get; set; }
         public string PayPeriod { get; set; }
-        
     }
 }

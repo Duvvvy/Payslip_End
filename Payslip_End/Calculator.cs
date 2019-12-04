@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NLog;
 using Payslip_End.DataStores;
 
 namespace Payslip_End {
@@ -9,10 +8,6 @@ namespace Payslip_End {
      * 
      */
     public class Calculator {
-        public Calculator() {
-
-        }
-
         public decimal MonthlyIncomeTaxFromAnnualGross(List<TaxBand> taxBands, decimal incomeBeforeTax) {
             var taxBand = taxBands.First(band => incomeBeforeTax >= band.LowerBand && incomeBeforeTax < band.UpperBand);
             var unRoundedIncomeTax = (taxBand.FlatFee + (incomeBeforeTax - taxBand.LowerBand) * taxBand.TaxRate) / 12;
@@ -35,10 +30,11 @@ namespace Payslip_End {
             return NumberMidpointRounder(unRoundedMonthlyContribution);
         }
 
-        public string PayPeriod(DateTime paymentStartDate, DateTime paymentEndDate) {//TODO insert format
+        public string PayPeriod(DateTime paymentStartDate, DateTime paymentEndDate) {
+            //TODO insert format
             return paymentStartDate.ToString("dd/MM/yyyy") + " - " + paymentEndDate.ToString("dd/MM/yyyy");
         }
-        
+
         public decimal NumberMidpointRounder(decimal unRoundedNumber) {
             var round = Math.Round(unRoundedNumber, MidpointRounding.AwayFromZero);
             return round;

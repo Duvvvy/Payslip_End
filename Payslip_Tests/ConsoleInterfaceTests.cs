@@ -1,19 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Text.RegularExpressions;
 using Payslip_End;
 using Xunit;
 
 namespace Payslip_Tests {
     public class ConsoleInterfaceTests {
-        private class ConsoleInterfaceUserInputAsList : ConsoleInterface {
-            public ConsoleInterfaceUserInputAsList(Stack<string> userInput) {
+        private class ConsoleInterfaceUserInputFromStack : ConsoleInterface {
+            public ConsoleInterfaceUserInputFromStack(Stack<string> userInput) {
                 UserInput = userInput;
             }
-
             public Stack<string> UserInput { get; }
-
             protected override string GetInputFromUser() {
                 return UserInput.Pop();
             }
@@ -24,7 +21,7 @@ namespace Payslip_Tests {
             var testInput = new Stack<string>();
             testInput.Push("test");
 
-            var fake = new ConsoleInterfaceUserInputAsList(testInput);
+            var fake = new ConsoleInterfaceUserInputFromStack(testInput);
             var result = fake.ListDecisionGetter(new List<string> {"test", "passed"}, "Please enter 'test'");
             Assert.Equal("test", result);
         }
@@ -34,7 +31,7 @@ namespace Payslip_Tests {
             var testStack = new Stack<string>();
             testStack.Push("19000");
             
-            var consoleInjector = new ConsoleInterfaceUserInputAsList(testStack);
+            var consoleInjector = new ConsoleInterfaceUserInputFromStack(testStack);
             
             Regex rgx = new Regex(@"\d");
             

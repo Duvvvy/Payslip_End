@@ -2,7 +2,8 @@ using System.Text;
 
 namespace Payslip_End.DataStores {
     public class Payslip {
-        public Payslip(string name, string payPeriod, decimal grossIncomePerMonth, decimal incomeTax, decimal netIncome, decimal superKiwiSaverContribution) {
+        public Payslip(string name, string payPeriod, decimal grossIncomePerMonth, decimal incomeTax, decimal netIncome,
+            decimal superKiwiSaverContribution) {
             Name = name;
             PayPeriod = payPeriod;
             GrossIncomePerMonth = grossIncomePerMonth;
@@ -11,12 +12,12 @@ namespace Payslip_End.DataStores {
             SuperKiwiSaverContribution = superKiwiSaverContribution;
         }
 
-        public string Name { get; set; }
-        public decimal GrossIncomePerMonth { get; set; }
-        public decimal IncomeTax { get; set; }
-        public decimal NetIncome { get; set; }
-        public decimal SuperKiwiSaverContribution { get; set; }
-        public string PayPeriod { get; set; }
+        private string Name { get; set; }
+        private decimal GrossIncomePerMonth { get; set; }
+        private decimal IncomeTax { get; set; }
+        private decimal NetIncome { get; set; }
+        private decimal SuperKiwiSaverContribution { get; set; }
+        private string PayPeriod { get; set; }
 
         public override string ToString() {
             var stringBuilder = new StringBuilder();
@@ -29,7 +30,6 @@ namespace Payslip_End.DataStores {
             stringBuilder.AppendLine("Super / KiwiSaver Contribution: " + SuperKiwiSaverContribution);
 
             return stringBuilder.ToString();
-
         }
     }
 }

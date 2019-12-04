@@ -6,41 +6,42 @@ using Payslip_End.DataStores;
 
 namespace Payslip_End {
     public class PayslipWriter {
-        public Calculator Calculator { get; set; }
-        public AuTaxBands AuTaxBands { get; set; }
         public PayslipWriter() {
             Calculator = new Calculator();
             AuTaxBands = new AuTaxBands();
         }
+
+        public Calculator Calculator { get; set; }
+        public AuTaxBands AuTaxBands { get; set; }
+
         public Payslip CreatePayslipForPerson(Person person) {
-            var name = (person.FirstName + " " + person.LastName);
+            var name = person.FirstName + " " + person.LastName;
 
             var payPeriod = "";
-            if (person.PayPeriod != null) {
+            if (person.PayPeriod != null)
                 payPeriod = person.PayPeriod;
-            }
-            else {
-                payPeriod = Calculator.PayPeriod(person.PaymentStartDate,person.PaymentEndDate);
-            }
+            else
+                payPeriod = Calculator.PayPeriod(person.PaymentStartDate, person.PaymentEndDate);
             var grossIncomePerMonth = Calculator.MonthlyGrossIncomeFromAnnualGross(person.AnnualSalary);
             var incomeTax = Calculator.MonthlyIncomeTaxFromAnnualGross(AuTaxBands, person.AnnualSalary);
             var netIncome = Calculator.MonthlyNetIncome(grossIncomePerMonth, incomeTax);
 
-            string superKiwiRateNumbersOnly = GetNumbers(person.SuperKiwiRate);
-            
-            var superOrKiwiContribution = Calculator.SuperKiwiSaverContribution(grossIncomePerMonth, Convert.ToDecimal(superKiwiRateNumbersOnly));
-            
-            var payslip = new Payslip(name,payPeriod,grossIncomePerMonth,incomeTax,netIncome,superOrKiwiContribution);
-            
+            var superKiwiRateNumbersOnly = GetNumbers(person.SuperKiwiRate);
+
+            var superOrKiwiContribution =
+                Calculator.SuperKiwiSaverContribution(grossIncomePerMonth, Convert.ToDecimal(superKiwiRateNumbersOnly));
+
+            var payslip = new Payslip(name, payPeriod, grossIncomePerMonth, incomeTax, netIncome,
+                superOrKiwiContribution);
+
             return payslip;
         }
-        
+
         public List<Payslip> CreatePayslipsForGroupOfPeople(IEnumerable<Person> group) {
-            return @group.Select(CreatePayslipForPerson).ToList();
+            return group.Select(CreatePayslipForPerson).ToList();
         }
-        
-        private static string GetNumbers(string input)
-        {
+
+        private static string GetNumbers(string input) {
             return new string(input.Where(char.IsDigit).ToArray());
         }
     }
