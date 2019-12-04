@@ -2,6 +2,9 @@ using System;
 
 namespace Payslip_End.DataStores {
     public class Person {
+        /*
+         * The purpose of this class is to store the information for a person
+         */
         public Person(string firstName, string lastName, decimal annualSalary, string superKiwiRate,
             DateTime paymentStartDate, DateTime paymentEndDate) {
             FirstName = firstName;

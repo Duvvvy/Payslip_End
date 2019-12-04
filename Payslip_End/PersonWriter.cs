@@ -7,6 +7,9 @@ using Payslip_End.DataStores;
 
 namespace Payslip_End {
     public class PersonWriter {
+        /*
+         * The purpose of this class is to create person objects
+         */
         private readonly ConsoleInterface _consoleInterface;
 
         public PersonWriter(ConsoleInterface consoleInterface) {
@@ -15,9 +18,9 @@ namespace Payslip_End {
 
         public Person CreatePersonManually() {
             var firstName =
-                _consoleInterface.RegexDecisionGetter(new Regex(""),
-                    "Please input your name: "); //TODO find regex for names
-            var lastName = _consoleInterface.RegexDecisionGetter(new Regex(""), "Please input your surname: ");
+                _consoleInterface.RegexDecisionGetter(new Regex(@"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"),
+                    "Please input your name: ");
+            var lastName = _consoleInterface.RegexDecisionGetter(new Regex(@"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"), "Please input your surname: ");
             var annualSalary =
                 Convert.ToDecimal(
                     _consoleInterface.RegexDecisionGetter(new Regex(@"\d"), "Please enter your annual salary: "));

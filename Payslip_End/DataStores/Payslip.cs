@@ -2,6 +2,9 @@ using System.Text;
 
 namespace Payslip_End.DataStores {
     public class Payslip {
+        /*
+         * The purpose of this class is to store the information for a payslip
+         */
         public Payslip(string name, string payPeriod, decimal grossIncomePerMonth, decimal incomeTax, decimal netIncome,
             decimal superKiwiSaverContribution) {
             Name = name;

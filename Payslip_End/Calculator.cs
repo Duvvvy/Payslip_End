@@ -4,10 +4,10 @@ using System.Linq;
 using Payslip_End.DataStores;
 
 namespace Payslip_End {
-    /*
-     * 
-     */
     public class Calculator {
+        /*
+         * The purpose of this class is to calculate all the values needed for a payslip
+         */
         public decimal MonthlyIncomeTaxFromAnnualGross(List<TaxBand> taxBands, decimal incomeBeforeTax) {
             var taxBand = taxBands.First(band => incomeBeforeTax >= band.LowerBand && incomeBeforeTax < band.UpperBand);
             var unRoundedIncomeTax = (taxBand.FlatFee + (incomeBeforeTax - taxBand.LowerBand) * taxBand.TaxRate) / 12;
