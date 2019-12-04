@@ -38,12 +38,5 @@ namespace Payslip_End {
                 paymentEndDate);
         }
 
-        public IEnumerable<Person> ReadInEnumerablePeopleFromCsv(string path) {
-            using (TextReader reader = File.OpenText(path))
-            using (var csv = new CsvReader(reader)) {
-                csv.Configuration.RegisterClassMap<PersonMap>();
-                foreach (var record in csv.GetRecords<Person>()) yield return record;
-            }
-        }
     }
 }

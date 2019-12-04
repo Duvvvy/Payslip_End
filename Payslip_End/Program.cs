@@ -27,7 +27,7 @@ namespace Payslip_End {
             }
             else if (inputType == "csv") {
                 var path = consoleInterface.RegexDecisionGetter(new Regex(@"^\/$|(^(?=\/)|^\.|^\.\.)(\/(?=[^/\0])[^/\0]+)*\/?$"), "Please enter the path to your CSV file: ");
-                var people = personWriter.ReadInEnumerablePeopleFromCsv(path);
+                var people = csvHandler.ReadInEnumerablePeopleFromCsv(path);
                 payslips = payslipWriter.CreatePayslipsForGroupOfPeople(people);
             }
             else {
